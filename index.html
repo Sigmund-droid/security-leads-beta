@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarasota Metro Security Leads — Beta</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f7f7f8;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-dim: #5a5a5a;
+    --border: #e2e2e4;
+    --accent: #b3261e;
+    --accent-soft: #fdeceb;
+    --high: #1a7a3c;
+    --high-soft: #e8f5ec;
+    --medium: #9a6b00;
+    --medium-soft: #fdf3e0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --card-bg: #1c1c1f;
+      --text: #f0f0f0;
+      --text-dim: #a3a3a8;
+      --border: #2e2e33;
+      --accent: #ff6b61;
+      --accent-soft: #3a1f1d;
+      --high: #4ade80;
+      --high-soft: #17301f;
+      --medium: #f2b53c;
+      --medium-soft: #332a10;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  header {
+    padding: 2.5rem 1.5rem 1.5rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  header h1 {
+    font-size: 1.75rem;
+    margin: 0 0 0.5rem;
+  }
+  header p {
+    color: var(--text-dim);
+    margin: 0.25rem 0;
+  }
+  .beta-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+  .lead-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .lead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .lead-crime {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+  .lead-date {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .lead-business {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0.35rem 0 0.15rem;
+  }
+  .lead-category {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+  .lead-meta {
+    font-size: 0.9rem;
+    margin: 0.15rem 0;
+  }
+  .lead-phone {
+    font-weight: 600;
+  }
+  .confidence {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.1rem 0.5rem;
+    border-radius: 6px;
+    margin-top: 0.6rem;
+  }
+  .confidence.high {
+    background: var(--high-soft);
+    color: var(--high);
+  }
+  .confidence.medium {
+    background: var(--medium-soft);
+    color: var(--medium);
+  }
+  .lead-notes {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--border);
+  }
+  .empty-state {
+    color: var(--text-dim);
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<header>
+  <span class="beta-tag">FREE BETA</span>
+  <h1>Sarasota Metro Security Leads</h1>
+  <p>Recent petty-crime activity (burglary, theft, vehicle break-ins) matched to nearby apartments, condos, shopping centers, and businesses across Sarasota, Venice, North Port, Bradenton, and Longboat Key.</p>
+  <p>Sourced from public county/city dispatch records. Business names and phone numbers are public directory information.</p>
+</header>
+<main id="leads">
+  <p class="empty-state">Loading leads…</p>
+</main>
+<footer>
+  Data sourced from public law-enforcement dispatch records. Provided for informational purposes only — no guarantee of accuracy or completeness. This is a free beta; leads are added as new incidents are identified.
+</footer>
+<script>
+async function loadLeads() {
+  const container = document.getElementById('leads');
+  try {
+    const res = await fetch('data.json', { cache: 'no-store' });
+    const { leads } = await res.json();
+    if (!leads || leads.length === 0) {
+      container.innerHTML = '<p class="empty-state">No leads yet — check back soon.</p>';
+      return;
+    }
+    container.innerHTML = leads.map(renderCard).join('');
+  } catch (err) {
+    container.innerHTML = '<p class="empty-state">Could not load leads right now.</p>';
+  }
+}
+
+function confidenceClass(text) {
+  if (!text) return '';
+  const t = text.toLowerCase();
+  if (t.startsWith('high')) return 'high';
+  if (t.startsWith('medium')) return 'medium';
+  return '';
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+function renderCard(lead) {
+  const confClass = confidenceClass(lead.match_confidence);
+  const confLabel = (lead.match_confidence || '').split(' - ')[0];
+  return `
+    <div class="lead-card">
+      <div class="lead-top">
+        <span class="lead-crime">${escapeHtml(lead.nature_of_call)}</span>
+        <span class="lead-date">${escapeHtml(lead.date)}</span>
+      </div>
+      <div class="lead-business">${escapeHtml(lead.matched_business_name)}</div>
+      <div class="lead-category">${escapeHtml(lead.business_category)}</div>
+      <div class="lead-meta">📍 ${escapeHtml(lead.business_address)}</div>
+      <div class="lead-meta lead-phone">📞 ${escapeHtml(lead.business_phone)}</div>
+      ${confClass ? `<span class="confidence ${confClass}">${escapeHtml(confLabel)} confidence</span>` : ''}
+      ${lead.notes ? `<div class="lead-notes">${escapeHtml(lead.notes)}</div>` : ''}
+    </div>
+  `;
+}
+
+loadLeads();
+</script>
+</body>
+</html>

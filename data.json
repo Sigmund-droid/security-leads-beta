@@ -1,0 +1,29 @@
+{
+  "generated_count": 2,
+  "leads": [
+    {
+      "date": "2026-07-14",
+      "nature_of_call": "BURGLARY - VEHICLE",
+      "crime_address": "475 BENJAMIN FRANKLIN DR",
+      "matched_business_name": "Lido Dorset Condominium",
+      "business_category": "condo/apartment (46 units)",
+      "business_phone": "941-388-1404",
+      "business_address": "475 Benjamin Franklin Dr, Sarasota, FL 34236",
+      "match_confidence": "high - exact address match",
+      "source": "dispatchreporting.scgov.net (manual pull)",
+      "notes": "Case SPD26031168. On-site condo association office, Lido Key near St. Armands. Office hours M-F 9am-4pm."
+    },
+    {
+      "date": "2026-07-14",
+      "nature_of_call": "OPEN DOOR/WINDOW",
+      "crime_address": "621 N WASHINGTON BLVD",
+      "matched_business_name": "Sam I Am Pavers LLC",
+      "business_category": "contractor/small business (US-301 commercial corridor)",
+      "business_phone": "941-266-2297",
+      "business_address": "621 N Washington Blvd, Sarasota, FL",
+      "match_confidence": "medium - registered address matches call address, but other directory listings show this business at a 34232 zip, so confirm it's the actual on-site occupant before pitching",
+      "source": "dispatchreporting.scgov.net (manual pull)",
+      "notes": "Case SPD26031274. Open door/window calls are burglary-adjacent (possible break-in check), not a confirmed crime like the vehicle burglary above -- softer lead."
+    }
+  ]
+}
