@@ -3,6 +3,7 @@
   "leads": [
     {
       "date": "2026-07-14",
+      "severity": "petty",
       "nature_of_call": "BURGLARY - VEHICLE",
       "crime_address": "475 BENJAMIN FRANKLIN DR",
       "matched_business_name": "Lido Dorset Condominium",
@@ -15,6 +16,7 @@
     },
     {
       "date": "2026-07-14",
+      "severity": "petty",
       "nature_of_call": "OPEN DOOR/WINDOW",
       "crime_address": "621 N WASHINGTON BLVD",
       "matched_business_name": "Sam I Am Pavers LLC",

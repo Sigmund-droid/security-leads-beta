@@ -128,6 +128,24 @@
     background: var(--medium-soft);
     color: var(--medium);
   }
+  .severity {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 6px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .severity.violent {
+    background: var(--accent);
+    color: #fff;
+  }
+  .severity.petty {
+    background: var(--border);
+    color: var(--text-dim);
+  }
   .lead-notes {
     color: var(--text-dim);
     font-size: 0.85rem;
@@ -154,7 +172,7 @@
 <header>
   <span class="beta-tag">FREE BETA</span>
   <h1>Sarasota Metro Security Leads</h1>
-  <p>Recent petty-crime activity (burglary, theft, vehicle break-ins) matched to nearby apartments, condos, shopping centers, and businesses across Sarasota, Venice, North Port, Bradenton, and Longboat Key.</p>
+  <p>Recent crime activity — property crime (burglary, theft, vehicle break-ins) and violent crime (assault, robbery, battery) — matched to nearby apartments, condos, shopping centers, and businesses across Sarasota, Venice, North Port, Bradenton, and Longboat Key.</p>
   <p>Sourced from public county/city dispatch records. Business names and phone numbers are public directory information.</p>
 </header>
 <main id="leads">
@@ -199,7 +217,10 @@ function renderCard(lead) {
   return `
     <div class="lead-card">
       <div class="lead-top">
-        <span class="lead-crime">${escapeHtml(lead.nature_of_call)}</span>
+        <span>
+          <span class="lead-crime">${escapeHtml(lead.nature_of_call)}</span>
+          ${lead.severity ? `<span class="severity ${escapeHtml(lead.severity)}">${escapeHtml(lead.severity)}</span>` : ''}
+        </span>
         <span class="lead-date">${escapeHtml(lead.date)}</span>
       </div>
       <div class="lead-business">${escapeHtml(lead.matched_business_name)}</div>
