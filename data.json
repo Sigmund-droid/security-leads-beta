@@ -1,6 +1,58 @@
 {
-  "generated_count": 2,
+  "generated_count": 6,
   "leads": [
+    {
+      "date": "2026-07-19",
+      "severity": "petty",
+      "nature_of_call": "BURGLARY - RESIDENTIAL",
+      "crime_address": "2901 FRUITVILLE RD",
+      "matched_business_name": "Arbor Village Apartments",
+      "business_category": "apartment community (80 units)",
+      "business_phone": "941-259-3950",
+      "business_address": "2901 Fruitville Rd, Sarasota, FL 34237",
+      "match_confidence": "high - exact address match to named apartment community",
+      "source": "dispatchreporting.scgov.net (automated pull)",
+      "notes": "Case SPD (07/20 09:07 log). \"Residential\" burglary classification but property is a multi-unit apartment community, squarely in scope. On-site property manager."
+    },
+    {
+      "date": "2026-07-19",
+      "severity": "petty",
+      "nature_of_call": "THEFT",
+      "crime_address": "13140 S TAMIAMI TRL",
+      "matched_business_name": "Walmart Supercenter (Store #5264)",
+      "business_category": "big-box retail / shopping",
+      "business_phone": "941-918-1247",
+      "business_address": "13140 S Tamiami Trl, Osprey, FL 34229",
+      "match_confidence": "high - exact address match single well-known tenant",
+      "source": "dispatchreporting.scgov.net (automated pull)",
+      "notes": "Case SCSO (07/19 13:34 log). Osprey is just south of Sarasota/Venice, still within Sarasota County -- included as in-metro. Large retail footprint, plausible ongoing security need."
+    },
+    {
+      "date": "2026-07-19",
+      "severity": "petty",
+      "nature_of_call": "OPEN DOOR/WINDOW",
+      "crime_address": "1635 US 41 BYP S",
+      "matched_business_name": "Norma Jean's Bar & Grill Room",
+      "business_category": "restaurant/bar (standalone business)",
+      "business_phone": "941-492-5524",
+      "business_address": "1635 US Hwy 41 Bypass S, Venice, FL",
+      "match_confidence": "high - exact address match single tenant",
+      "source": "dispatchreporting.scgov.net (automated pull)",
+      "notes": "Case SCSO (07/19 14:55 log). Standalone restaurant/bar rather than plaza/apartment/gym -- outside the original property-type list but a legitimate commercial security prospect; flagging category as a judgment call, not a strict-scope match."
+    },
+    {
+      "date": "2026-07-19",
+      "severity": "petty",
+      "nature_of_call": "CRIMINAL MISCHIEF",
+      "crime_address": "1947 FRUITVILLE RD",
+      "matched_business_name": "Walgreens",
+      "business_category": "retail pharmacy (standalone)",
+      "business_phone": "941-955-2064",
+      "business_address": "1947 Fruitville Rd, Sarasota, FL 34236",
+      "match_confidence": "high - exact address match single tenant",
+      "source": "dispatchreporting.scgov.net (automated pull)",
+      "notes": "Case SPD (07/19 22:47 log). Same corridor as Arbor Village lead. Standalone retail store, not a shopping center/plaza -- same category judgment-call flag as Norma Jean's."
+    },
     {
       "date": "2026-07-14",
       "severity": "petty",
